@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Site</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body {
+      background-color: #fcfcfc;
+      color: #333;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.8em;
+      font-weight: 400;
+    }
+
+    .menu-link {
+      letter-spacing: 0.15em;
+      font-size: 12px;
+      color: #888;
+      text-transform: uppercase;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    .menu-link:hover {
+      color: #333;
+    }
+
+    a {
+      color: #6b8fa3;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    /* Page sections */
+    .page {
+      display: none;
+    }
+
+    .page.active {
+      display: block;
+    }
+
+    /* Photo grid */
+    .photo-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 4px;
+    }
+
+    .photo-grid img {
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Writing page */
+    .writing-section h2 {
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 2em;
+      margin-bottom: 0.5em;
+    }
+
+    .writing-section ol {
+      list-style: decimal;
+      padding-left: 1.5em;
+    }
+
+    .writing-section ol li {
+      margin-bottom: 0.2em;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Nav -->
+  <nav style="text-align:center; padding: 28px 0 20px;">
+    <a href="#" class="menu-link" onclick="showPage('home', event)">MENU</a>
+  </nav>
+
+  <!-- Dropdown Menu (simple inline toggle) -->
+  <div id="menu-dropdown" style="display:none; text-align:center; padding-bottom: 20px;">
+    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0; letter-spacing:0.05em;"
+      onclick="showPage('home', event)">About</a>
+    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0; letter-spacing:0.05em;"
+      onclick="showPage('writing', event)">Writing</a>
+    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0; letter-spacing:0.05em;"
+      onclick="showPage('photos', event)">Photos</a>
+  </div>
+
+  <div style="max-width: 540px; margin: 0 auto; padding: 0 24px 60px;">
+
+    <!-- Home / About Page -->
+    <div id="page-home" class="page active">
+      <div style="margin-bottom: 28px;">
+        <img src="https://i.imgur.com/z67Igz5.png" alt="Profile photo" style="width: 30%; display: block;">
+      </div>
+
+      <p style="margin-bottom: 1.2em;">
+        Currently reading <a href="#">Stoic Diary by Stephen Hanselmand and Ryan Holiday. </a>
+      </p>
+
+      <p style="margin-bottom: 1.2em;">
+        I've spent the last few years walking and investing. I've been lucky to be involved with the early rounds of:
+        Brain Co, Chroma, Thatch, Silna, and many others.
+      </p>
+
+      <p>
+        You can find my writing <a href="#" onclick="showPage('writing', event)">here</a> and my photos <a href="#"
+          onclick="showPage('photos', event)">here</a>.
+      </p>
+    </div>
+
+    <!-- Writing Page -->
+    <div id="page-writing" class="page writing-section">
+      <div style="display: flex; flex-direction: column; gap: 2.2em;">
+
+        <article>
+          <div
+            style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#999; margin-bottom:0.6em;">
+            March 30, 2026
+          </div>
+          <h2 style="margin:0 0 0.5em; font-size:15px; font-weight:700;">On staying interested</h2>
+          <p style="margin:0;">
+            I keep noticing that most worthwhile work begins before confidence arrives. Interest comes first,
+            then attention, then skill. I used to think seriousness was a precondition for good work, but I’m
+            starting to think affection is. You return to what you like long enough to become good at it.
+          </p>
+        </article>
+
+        <article>
+          <div
+            style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#999; margin-bottom:0.6em;">
+            March 28, 2026
+          </div>
+          <h2 style="margin:0 0 0.5em; font-size:15px; font-weight:700;">A note on repetition</h2>
+          <p style="margin:0;">
+            Repetition has a bad reputation because people confuse it with stagnation. But nearly everything
+            useful is built by returning to the same subject with slightly better taste each time. The outside
+            world sees sameness; the person doing the work feels the difference immediately.
+          </p>
+        </article>
+
+        <article>
+          <div
+            style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#999; margin-bottom:0.6em;">
+            March 24, 2026
+          </div>
+          <h2 style="margin:0 0 0.5em; font-size:15px; font-weight:700;">Why I write things down</h2>
+          <p style="margin:0;">
+            Writing is less a performance than a method of finding out what I think. A vague intuition can feel
+            complete in the mind right up until it meets a sentence. The sentence is the test. If it collapses,
+            the thought was never finished.
+          </p>
+        </article>
+
+      </div>
+    </div>
+
+    <!-- Photos Page -->
+    <div id="page-photos" class="page">
+      <div class="photo-grid">
+        <!-- Row 1 -->
+        <img src="https://placehold.co/200x200/b5c4b1/7a9e7e" alt="">
+        <img src="https://placehold.co/200x200/c4b5a0/9e7a5a" alt="">
+        <img src="https://placehold.co/200x200/b0bec5/607d8b" alt="">
+        <!-- Row 2 -->
+        <img src="https://placehold.co/200x200/d7ccc8/a1887f" alt="">
+        <img src="https://placehold.co/200x200/c8e6c9/66bb6a" alt="">
+        <img src="https://placehold.co/200x200/ffe0b2/ffa726" alt="">
+        <!-- Row 3 
+        <img src="https://placehold.co/200x200/e1bee7/ab47bc" alt="">
+        <img src="https://placehold.co/200x200/b3e5fc/29b6f6" alt="">
+        <img src="https://placehold.co/200x200/dcedc8/9ccc65" alt="">
+        -->
+        <!-- Row 4 
+        <img src="https://placehold.co/200x200/fff9c4/ffee58" alt="">
+        <img src="https://placehold.co/200x200/cfd8dc/90a4ae" alt="">
+        <img src="https://placehold.co/200x200/f8bbd0/f48fb1" alt="">
+        -->
+        <!-- Row 5 
+        <img src="https://placehold.co/200x200/d4e157/c0ca33" alt="">
+        <img src="https://placehold.co/200x200/80cbc4/26a69a" alt="">
+        <img src="https://placehold.co/200x200/ce93d8/ab47bc" alt="">
+        -->
+
+        <!-- Row 6 
+        <img src="https://placehold.co/200x200/bcaaa4/8d6e63" alt="">
+        <img src="https://placehold.co/200x200/a5d6a7/43a047" alt="">
+        <img src="https://placehold.co/200x200/90caf9/1e88e5" alt="">
+
+        -->
+        <!-- Row 7 
+        <img src="https://placehold.co/200x200/ffcc80/fb8c00" alt="">
+        <img src="https://placehold.co/200x200/b0bec5/546e7a" alt="">
+        <img src="https://placehold.co/200x200/ef9a9a/e53935" alt="">
+
+        -->
+        <!-- Row 8 
+        <img src="https://placehold.co/200x200/c5e1a5/7cb342" alt="">
+        <img src="https://placehold.co/200x200/ffe082/ffb300" alt="">
+        <img src="https://placehold.co/200x200/b2dfdb/00897b" alt="">
+        -->
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    const menuLink = document.querySelector('.menu-link');
+    const menuDropdown = document.getElementById('menu-dropdown');
+
+    menuLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      menuDropdown.style.display = menuDropdown.style.display === 'none' ? 'block' : 'none';
+    });
+
+    function showPage(name, e) {
+      if (e) e.preventDefault();
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-' + name).classList.add('active');
+      menuDropdown.style.display = 'none';
+    }
+  </script>
+
+</body>
+
+</html>
