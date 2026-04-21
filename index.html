@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Personal Site</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     body {
       background-color: #fcfcfc;
@@ -38,7 +39,6 @@
       text-decoration: underline;
     }
 
-    /* Page sections */
     .page {
       display: none;
     }
@@ -47,7 +47,6 @@
       display: block;
     }
 
-    /* Photo grid */
     .photo-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -59,194 +58,248 @@
       aspect-ratio: 1;
       object-fit: cover;
       display: block;
+      cursor: pointer;
     }
 
-    /* Writing page */
-    .writing-section h2 {
+    .writing-section article {
+      margin-bottom: 2.4em;
+      padding-bottom: 2.2em;
+      border-bottom: 1px solid #ececec;
+    }
+
+    .writing-section article:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+
+    .entry-date {
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #999;
+      margin-bottom: 0.6em;
+    }
+
+    .entry-title {
       font-weight: 700;
       font-size: 15px;
-      margin-top: 2em;
-      margin-bottom: 0.5em;
+      margin: 0 0 0.7em;
+      color: #222;
     }
 
-    .writing-section ol {
-      list-style: decimal;
-      padding-left: 1.5em;
+    .projects-placeholder {
+      color: #777;
+      font-size: 15px;
     }
 
-    .writing-section ol li {
-      margin-bottom: 0.2em;
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 15, 15, 0.92);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      z-index: 9999;
+      cursor: pointer;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: min(92vw, 1400px);
+      max-height: 90vh;
+      width: auto;
+      height: auto;
+      display: block;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+      cursor: pointer;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- Nav -->
   <nav style="text-align:center; padding: 28px 0 20px;">
-    <a href="#" class="menu-link" onclick="showPage('home', event)">MENU</a>
+    <a href="#" class="menu-link" onclick="toggleMenu(event)">MENU</a>
   </nav>
 
-  <!-- Dropdown Menu (simple inline toggle) -->
   <div id="menu-dropdown" style="display:none; text-align:center; padding-bottom: 20px;">
-    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0; letter-spacing:0.05em;"
+    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0;"
       onclick="showPage('home', event)">About</a>
-    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0; letter-spacing:0.05em;"
+
+    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0;"
       onclick="showPage('writing', event)">Writing</a>
-    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0; letter-spacing:0.05em;"
+
+    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0;"
+      onclick="showPage('projects', event)">Projects</a>
+
+    <a href="#" style="display:block; font-size:13px; color:#555; padding:4px 0;"
       onclick="showPage('photos', event)">Photos</a>
   </div>
 
-  <div style="max-width: 540px; margin: 0 auto; padding: 0 24px 60px;">
+  <div style="max-width:540px; margin:0 auto; padding:0 24px 60px;">
 
-    <!-- Home / About Page -->
+    <!-- HOME -->
     <div id="page-home" class="page active">
-      <div style="margin-bottom: 28px;">
-        <img src="https://i.imgur.com/z67Igz5.png" alt="Profile photo" style="width: 30%; display: block;">
+
+      <div style="margin-bottom:28px;">
+        <img src="https://i.imgur.com/z67Igz5.png" style="width:30%; display:block;">
       </div>
 
-      <p style="margin-bottom: 1.2em;">
-        Currently reading <a href="#">Stoic Diary by Stephen Hanselmand and Ryan Holiday. </a>
+      <p style="margin-bottom:1.2em;">
+        Currently reading
+        <a href="https://books.google.com.pe/books?id=TR2MDAAAQBAJ">
+          Stoic Diary by Stephen Hanselman and Ryan Holiday
+        </a>.
       </p>
 
-      <p style="margin-bottom: 1.2em;">
-        I've spent the last few years walking and investing. I've been lucky to be involved with the early rounds of:
-        Brain Co, Chroma, Thatch, Silna, and many others.
+      <p style="margin-bottom:1.2em;">
+        Leaving a trace of my learnings and opinions,
+        feel free to look at my notes
+        <a href="#" onclick="showPage('writing', event)">here</a>.
       </p>
 
       <p>
-        You can find my writing <a href="#" onclick="showPage('writing', event)">here</a> and my photos <a href="#"
-          onclick="showPage('photos', event)">here</a>.
+        You can find my projects
+        <a href="#" onclick="showPage('projects', event)">here</a>,
+        and my photos
+        <a href="#" onclick="showPage('photos', event)">here</a>.
       </p>
+
     </div>
 
-    <!-- Writing Page -->
+    <!-- WRITING -->
     <div id="page-writing" class="page writing-section">
-      <div style="display: flex; flex-direction: column; gap: 2.2em;">
 
-        <article>
-          <div
-            style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#999; margin-bottom:0.6em;">
-            March 30, 2026
-          </div>
-          <h2 style="margin:0 0 0.5em; font-size:15px; font-weight:700;">On staying interested</h2>
-          <p style="margin:0;">
-            I keep noticing that most worthwhile work begins before confidence arrives. Interest comes first,
-            then attention, then skill. I used to think seriousness was a precondition for good work, but I’m
-            starting to think affection is. You return to what you like long enough to become good at it.
-          </p>
-        </article>
+      <article>
+        <div class="entry-date">March 30, 2026</div>
+        <h2 class="entry-title">On staying interested</h2>
+        <p>
+          I keep noticing that most worthwhile work begins before confidence arrives.
+        </p>
+      </article>
 
-        <article>
-          <div
-            style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#999; margin-bottom:0.6em;">
-            March 28, 2026
-          </div>
-          <h2 style="margin:0 0 0.5em; font-size:15px; font-weight:700;">A note on repetition</h2>
-          <p style="margin:0;">
-            Repetition has a bad reputation because people confuse it with stagnation. But nearly everything
-            useful is built by returning to the same subject with slightly better taste each time. The outside
-            world sees sameness; the person doing the work feels the difference immediately.
-          </p>
-        </article>
+      <article>
+        <div class="entry-date">March 28, 2026</div>
+        <h2 class="entry-title">A note on repetition</h2>
+        <p>
+          Repetition has a bad reputation because people confuse it with stagnation.
+        </p>
+      </article>
 
-        <article>
-          <div
-            style="font-size:12px; letter-spacing:0.08em; text-transform:uppercase; color:#999; margin-bottom:0.6em;">
-            March 24, 2026
-          </div>
-          <h2 style="margin:0 0 0.5em; font-size:15px; font-weight:700;">Why I write things down</h2>
-          <p style="margin:0;">
-            Writing is less a performance than a method of finding out what I think. A vague intuition can feel
-            complete in the mind right up until it meets a sentence. The sentence is the test. If it collapses,
-            the thought was never finished.
-          </p>
-        </article>
-
-      </div>
     </div>
 
-    <!-- Photos Page -->
+    <!-- PROJECTS -->
+    <div id="page-projects" class="page">
+      <h2 style="font-weight:700;">Projects</h2>
+      <p class="projects-placeholder">On development.</p>
+    </div>
+
+    <!-- PHOTOS -->
     <div id="page-photos" class="page">
       <div class="photo-grid">
-        <img src="gallery/0SWE8284.webp" alt="0SWE8284">
-        <img src="gallery/1MG_0612.webp" alt="1MG_0612">
-        <img src="gallery/2MG_1068.webp" alt="2MG_1068">
-        <img src="gallery/3MG_1255.webp" alt="3MG_1255">
-        <img src="gallery/4MG_1272.webp" alt="4MG_1272">
-        <img src="gallery/6MG_1296.webp" alt="6MG_1296">
-        <img src="gallery/7MG_1353.webp" alt="7MG_1353">
-        <img src="gallery/8MG_1364.webp" alt="8MG_1364">
-        <img src="gallery/9MG_1374.webp" alt="9MG_1374">
-        <img src="gallery/12MG_1427.webp" alt="12MG_1427">
-        <img src="gallery/14MG_1468.webp" alt="14MG_1468">
-        <img src="gallery/15MG_1644.webp" alt="15MG_1644">
-        <img src="gallery/16MG_1692.webp" alt="16MG_1692">
-        <img src="gallery/17MG_1694.webp" alt="17MG_1694">
-        <img src="gallery/18MG_1700.webp" alt="18MG_1700">
-        <img src="gallery/19MG_1703.webp" alt="19MG_1703">
-        <img src="gallery/20MG_1709.webp" alt="20MG_1709">
-        <img src="gallery/21MG_1736.webp" alt="21MG_1736">
-        <img src="gallery/22MG_1744.webp" alt="22MG_1744">
-        <img src="gallery/23MG_1768.webp" alt="23MG_1768">
-        <img src="gallery/24MG_1784.webp" alt="24MG_1784">
-        <img src="gallery/25MG_1807.webp" alt="25MG_1807">
-        <img src="gallery/26MG_1848.webp" alt="26MG_1848">
-        <img src="gallery/27MG_1865.webp" alt="27MG_1865">
-        <img src="gallery/28MG_1870.webp" alt="28MG_1870">
-        <img src="gallery/29MG_1896.webp" alt="29MG_1896">
-        <img src="gallery/31MG_2378.webp" alt="31MG_2378">
-        <img src="gallery/32MG_3009.webp" alt="32MG_3009">
-        <img src="gallery/33MG_3907.webp" alt="33MG_3907">
-        <img src="gallery/34MG_4245.webp" alt="34MG_4245">
-        <img src="gallery/35MG_4698.webp" alt="35MG_4698">
-        <img src="gallery/36MG_4967.webp" alt="36MG_4967">
-        <img src="gallery/37MG_5054.webp" alt="37MG_5054">
-        <img src="gallery/38MG_6224.webp" alt="38MG_6224">
-        <img src="gallery/39MG_6288.webp" alt="39MG_6288">
-        <img src="gallery/41MG_6355.webp" alt="41MG_6355">
-        <img src="gallery/42MG_6362.webp" alt="42MG_6362">
-        <img src="gallery/43MG_6442.webp" alt="43MG_6442">
-        <img src="gallery/44MG_6531.webp" alt="44MG_6531">
-        <img src="gallery/45MG_6572.webp" alt="45MG_6572">
-        <img src="gallery/47MG_6586.webp" alt="47MG_6586">
-        <img src="gallery/48MG_6588.webp" alt="48MG_6588">
-        <img src="gallery/49MG_8040 - copia.webp" alt="49MG_8040 - copia">
-        <img src="gallery/51MG_8154.webp" alt="51MG_8154">
-        <img src="gallery/53MG_8183.webp" alt="53MG_8183">
-        <img src="gallery/54MG_8185.webp" alt="54MG_8185">
-        <img src="gallery/56MG_8199.webp" alt="56MG_8199">
-        <img src="gallery/57MG_8246.webp" alt="57MG_8246">
-        <img src="gallery/58MG_8269.webp" alt="58MG_8269">
-        <img src="gallery/59MG_8283.webp" alt="59MG_8283">
-        <img src="gallery/60MG_8302.webp" alt="60MG_8302">
-        <img src="gallery/61MG_8318.webp" alt="61MG_8318">
-        <img src="gallery/62MG_8473.webp" alt="62MG_8473">
-        <img src="gallery/64MG_8496.webp" alt="64MG_8496">
-        <img src="gallery/65MG_8747.webp" alt="65MG_8747">
-        <img src="gallery/66MG_9398.webp" alt="66MG_9398">
+
+        <img src="gallery/0SWE8284.webp" data-full="gallery/0SWE8284.webp">
+        <img src="gallery/1MG_0612.webp" data-full="gallery/1MG_0612.webp">
+        <img src="gallery/2MG_1068.webp" data-full="gallery/2MG_1068.webp">
+        <img src="gallery/3MG_1255.webp" data-full="gallery/3MG_1255.webp">
+        <img src="gallery/4MG_1272.webp" data-full="gallery/4MG_1272.webp">
+        <img src="gallery/6MG_1296.webp" data-full="gallery/6MG_1296.webp">
+        <img src="gallery/7MG_1353.webp" data-full="gallery/7MG_1353.webp">
+        <img src="gallery/8MG_1364.webp" data-full="gallery/8MG_1364.webp">
+        <img src="gallery/9MG_1374.webp" data-full="gallery/9MG_1374.webp">
+        <img src="gallery/12MG_1427.webp" data-full="gallery/12MG_1427.webp">
+        <img src="gallery/14MG_1468.webp" data-full="gallery/14MG_1468.webp">
+        <img src="gallery/15MG_1644.webp" data-full="gallery/15MG_1644.webp">
+        <img src="gallery/16MG_1692.webp" data-full="gallery/16MG_1692.webp">
+        <img src="gallery/17MG_1694.webp" data-full="gallery/17MG_1694.webp">
+        <img src="gallery/18MG_1700.webp" data-full="gallery/18MG_1700.webp">
+        <img src="gallery/19MG_1703.webp" data-full="gallery/19MG_1703.webp">
+        <img src="gallery/20MG_1709.webp" data-full="gallery/20MG_1709.webp">
+        <img src="gallery/21MG_1736.webp" data-full="gallery/21MG_1736.webp">
+
       </div>
     </div>
 
   </div>
 
-  <script>
-    const menuLink = document.querySelector('.menu-link');
-    const menuDropdown = document.getElementById('menu-dropdown');
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox">
+    <img id="lightbox-image">
+  </div>
 
-    menuLink.addEventListener('click', function (e) {
+  <script>
+    const menuDropdown = document.getElementById("menu-dropdown");
+    const lightbox = document.getElementById("lightbox");
+    const lightboxImage = document.getElementById("lightbox-image");
+
+    function toggleMenu(e) {
       e.preventDefault();
-      menuDropdown.style.display = menuDropdown.style.display === 'none' ? 'block' : 'none';
-    });
+      menuDropdown.style.display =
+        menuDropdown.style.display === "block" ? "none" : "block";
+    }
 
     function showPage(name, e) {
-      if (e) e.preventDefault();
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('page-' + name).classList.add('active');
-      menuDropdown.style.display = 'none';
+      e.preventDefault();
+
+      document.querySelectorAll(".page").forEach(p => {
+        p.classList.remove("active");
+      });
+
+      document.getElementById("page-" + name).classList.add("active");
+      menuDropdown.style.display = "none";
+      closeLightbox();
     }
+
+    const photos = Array.from(document.querySelectorAll(".photo-grid img"));
+    let currentIndex = -1;
+
+    photos.forEach((img, i) => {
+      img.addEventListener("click", () => openLightbox(i));
+    });
+
+    function openLightbox(i) {
+      currentIndex = i;
+      lightboxImage.src = photos[i].dataset.full;
+      lightbox.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function nextImage() {
+      if (currentIndex >= photos.length - 1) {
+        closeLightbox();
+        return;
+      }
+
+      currentIndex++;
+      lightboxImage.src = photos[currentIndex].dataset.full;
+    }
+
+    lightbox.addEventListener("click", function(e) {
+      if (e.target === lightbox) closeLightbox();
+    });
+
+    lightboxImage.addEventListener("click", function(e) {
+      e.stopPropagation();
+      nextImage();
+    });
+
+    document.addEventListener("keydown", function(e) {
+      if (!lightbox.classList.contains("active")) return;
+
+      if (e.key === "Escape") closeLightbox();
+      if (e.key === "ArrowRight" || e.key === "Enter") nextImage();
+    });
   </script>
 
 </body>
-
 </html>
