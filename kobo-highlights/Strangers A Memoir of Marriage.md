@@ -56,3 +56,33 @@ imported: "2026-07-28T14:17:44.432Z"
 *— 23 julio 2026*
 
 ---
+
+## New Highlights (04 septiembre 2026)
+
+> I don’t know why he left. I don’t think I ever will.
+ I still think, maybe, there will be a final act in the play, an end to the story, when I am given my answer. But the years go by without one. There is only silence
+
+*— 04 agosto 2026*
+
+---
+> When I think of James now, I think of that man waving. He is not a villain. He is a man with his own wounds
+
+*— 04 agosto 2026*
+
+---
+> He is someone I can survive without. He is someone I don’t know. He is someone who doesn’t know me.
+
+*— 04 agosto 2026*
+
+---
+> But I also tried to have compassion for the woman I was, agreeing to all of it, trusting my husband.
+ I did it for love. There is nothing shameful about that.
+
+*— 27 julio 2026*
+
+---
+> I had created a complicated web over twenty years, with all strings leading back to him. I had to cut each string and begin again. I was overcome with anxiety. This is what I had feared. Understanding it. Doing it myself. Being responsible.
+
+*— 31 julio 2026*
+
+---
